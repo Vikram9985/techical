@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Product Options</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .option {
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .option.popular {
+      border: 2px solid #ff4081;
+      background: #fff0f6;
+    }
+    .badge {
+      background: #ff4081;
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      padding: 2px 6px;
+      margin-left: 8px;
+    }
+    .most-popular {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff4081;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .dropdowns {
+      margin-top: 10px;
+    }
+    .total {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    button {
+      background: #ff4081;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 4px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .option-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .option-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    s {
+      color: grey;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+
+   .ce {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  
+}
+
+.ce p {
+  margin: 0;
+  font-size: 14px;
+  color: grey;
+  color: #ff4081;
+}
+
+.ce .total {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+}
+
+    
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>YAY! It's BOGO</h3>
+    <form id="productForm">
+      <div class="option">
+        <label>
+          <div class="option-content">
+            <div class="option-text">
+              <input type="radio" name="unit" value="1" checked>
+              1 Unit <span class="badge">10% Off</span>
+            </div>
+            <div>$10.00 USD <s>$24.00</s></div>
+          </div>
+        </label>
+      </div>
+
+      <div class="option popular">
+        <span class="most-popular">Most Popular</span>
+        <label>
+          <div class="option-content">
+            <div class="option-text">
+              <input type="radio" name="unit" value="2">
+              2 Unit <span class="badge">20% Off</span>
+            </div>
+            <div>$18.00 USD <s>$24.00</s></div>
+          </div>
+        </label>
+        <div class="dropdowns" style="display: none;">
+          <div>
+            #1 Size: 
+            <select>
+              <option>S</option><option>M</option><option>L</option>
+            </select>
+            Colour: 
+            <select>
+              <option>Black</option><option>White</option>
+            </select>
+          </div>
+          <div>
+            #2 Size: 
+            <select>
+              <option>S</option><option>M</option><option>L</option>
+            </select>
+            Colour: 
+            <select>
+              <option>Colour</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="option">
+        <label>
+          <div class="option-content">
+            <div class="option-text">
+              <input type="radio" name="unit" value="3">
+              3 Unit <span class="badge">30% Off</span>
+            </div>
+            <div>$24.00 USD <s>$24.00</s></div>
+          </div>
+        </label>
+      </div>
+
+<div class="ce">
+      <p>Free Delivery</p>
+      <div class="total">Total: $18.00 USD</div>
+      </div>
+      <button type="submit">+ Add to Cart</button>
+    </form>
+  </div>
+
+  <script>
+    const radios = document.querySelectorAll('input[name="unit"]');
+    const dropdowns = document.querySelector('.dropdowns');
+    const total = document.querySelector('.total');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if(radio.value == "2"){
+          dropdowns.style.display = "block";
+          total.innerText = "Total: $18.00 USD";
+        } else if(radio.value == "3"){
+          dropdowns.style.display = "none";
+          total.innerText = "Total: $24.00 USD";
+        } else {
+          dropdowns.style.display = "none";
+          total.innerText = "Total: $18.00 USD";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
